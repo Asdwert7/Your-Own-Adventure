@@ -6,8 +6,11 @@ from .world import World, Room, Action
 
 def load_text(filepath):
     """Читает файл и возвращает список строк без символа '\n' в конце."""
-    with open(filepath, "r", encoding="utf-8") as file:
+    file = open(filepath, "r", encoding="utf-8")
+    try:
         return [line.rstrip("\n") for line in file]
+    finally:
+        file.close()
 
 
 def save_current_room(rooms, current_room):

@@ -50,8 +50,11 @@ def build_dot(world, add_labels=True):
 
 def save_dot(filepath, dot_text):
     """Сохраняет DOT-код в файл с кодировкой UTF-8."""
-    with open(filepath, "w", encoding="utf-8") as f:
-        f.write(dot_text)
+    file = open(filepath, "w", encoding="utf-8")
+    try:
+        file.write(dot_text)
+    finally:
+        file.close()
 
 
 if __name__ == "__main__":

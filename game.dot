@@ -1,0 +1,33 @@
+digraph game {
+    rankdir=TB;           // сверху вниз
+    node [shape=box, style=rounded];
+
+    // Вершины: комнаты
+    start [label="Каюта ученого", fillcolor="#ffccff", style="rounded,filled"];
+    comms [label="Связь установлена"];
+    corridor [label="Перекресток"];
+    security [label="Оружейная"];
+    vents [label="Вентиляция"];
+    airlock [label="Аварийный шлюз"];
+    reactor [label="Реактор"];
+    encounter [label="Встреча с угрозой"];
+    death [label="Сигнал потерян"];
+    end [label="Эвакуация", fillcolor="#ccffcc", style="rounded,filled"];
+
+    // Рёбра: переходы между комнатами
+    start -> comms [label="Приказать: Включить связь"];
+    comms -> corridor [label="Приказать: Выйти в коридор"];
+    corridor -> security [label="Приказать: Идти в оружейную"];
+    corridor -> vents [label="Приказать: Лезть в вентиляцию"];
+    corridor -> airlock [label="Приказать: Проверить шлюз"];
+    corridor -> reactor [label="Приказать: Спуститься в реактор"];
+    security -> encounter [label="Приказать: Взять оружие"];
+    vents -> encounter [label="Приказать: Ползти к выходу"];
+    airlock -> airlock [label="Приказать: Попытаться открыть"];
+    airlock -> corridor [label="Приказать: Вернуться в коридор"];
+    reactor -> reactor [label="Приказать: Осмотреть реактор"];
+    encounter -> end [label="Приказать: Атаковать"];
+    encounter -> end [label="Приказать: Замереть"];
+    encounter -> death [label="Приказать: Бежать назад"];
+    death -> start [label="Приказать: Перезапуск системы"];
+}
